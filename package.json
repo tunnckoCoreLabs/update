@@ -1,0 +1,75 @@
+{
+  "name": "@tunnckocore/update",
+  "description": "Update a repository with latest templates from `charlike`.",
+  "license": "Apache-2.0",
+  "licenseStart": "2018",
+  "scripts": {
+    "start": "tunnckocore-scripts",
+    "extends": "@tunnckocore/config/scripts"
+  },
+  "engines": {
+    "node": "^8.11.0 || >=10.13.0"
+  },
+  "dependencies": {
+    "@tunnckocore/execa": "^2.1.1",
+    "@tunnckocore/package-json": "^0.3.1",
+    "charlike": "^2.0.5",
+    "esm": "^3.0.84",
+    "fs-extra": "^7.0.0"
+  },
+  "devDependencies": {
+    "@tunnckocore/config": "^0.5.1",
+    "@tunnckocore/scripts": "^1.0.1",
+    "asia": "^0.19.7"
+  },
+  "files": [
+    "src",
+    "cli.js",
+    "index.js"
+  ],
+  "bin": {
+    "update": "cli.js",
+    "tunnckocore-update": "cli.js"
+  },
+  "main": "index.js",
+  "module": "src/index.js",
+  "typings": "src/index.d.ts",
+  "version": "0.0.0-semantically-released",
+  "repository": "tunnckoCoreLabs/update",
+  "homepage": "https://github.com/tunnckoCoreLabs/update",
+  "author": "Charlike Mike Reagent (https://tunnckocore.com)",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "renovate": {
+    "extends": "tunnckocore"
+  },
+  "verb": {
+    "run": true,
+    "toc": {
+      "render": true,
+      "method": "preWrite",
+      "maxdepth": 4
+    },
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "related": {
+      "list": [
+        "asia",
+        "charlike",
+        "docks",
+        "execa"
+      ]
+    },
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": [
+      "new-release",
+      "semantic-release"
+    ]
+  }
+}
