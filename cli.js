@@ -50,6 +50,7 @@ async function main() {
     owner: 'tunnckoCoreLabs',
     licenseStart: pkg.licenseStart,
     locals: {
+      pkg: getPkg(pkg.name),
       deps,
       devDeps,
     },

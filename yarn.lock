@@ -555,10 +555,10 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-charlike@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/charlike/-/charlike-2.0.5.tgz#5a4a795303538f3d92016c2bde2ca09435d694b5"
-  integrity sha512-3DvRq0/OprDDEchN1xJs78chQu6eF/C3NgiC8Eiw5doEoQgUApr8Ho9ukeaPgBeQ8OzhmrTWYcXu8HaJu6gmNg==
+charlike@^2.0.9:
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/charlike/-/charlike-2.0.9.tgz#d0c67526c660ee7f39c59d9bc66ae694fa9767be"
+  integrity sha512-xetDF8As8jKz9g3XFPPj/6GQrARfo2Sp6ikeMdccL9oGmQ95AbuhMwNp8Kw7JSzy0ld3K/urOTbZ5595Up0aCA==
   dependencies:
     "@tunnckocore/package-json" "^0.3.1"
     camelcase "^5.0.0"
