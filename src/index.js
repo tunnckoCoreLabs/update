@@ -104,6 +104,7 @@ async function runCharlike(pkg, upperDir, options) {
           deps: `${JSON.stringify(deps, null, 4).slice(0, -1)}  }`,
           devDeps: `${JSON.stringify(devDeps, null, 4).slice(0, -1)}  }`,
           license: { year: pkg.licenseStart, name: pkg.license },
+          version: await get(pkg.name, 'version'),
         },
       },
       options,
