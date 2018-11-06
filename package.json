@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@tunnckocore/config": "^0.5.1",
-    "@tunnckocore/scripts": "^1.0.1",
+    "@tunnckocore/scripts": "^1.1.0",
     "asia": "^0.19.7"
   },
   "files": [
@@ -32,10 +32,6 @@
     "index.js",
     "cli.js"
   ],
-  "bin": {
-    "update": "cli.js",
-    "tunnckocore-update": "cli.js"
-  },
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
@@ -82,5 +78,9 @@
       "new-release",
       "semantic-release"
     ]
+  },
+  "bin": {
+    "update": "cli.js",
+    "tunnckocore-update": "cli.js"
   }
 }

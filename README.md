@@ -72,7 +72,8 @@ _Generated using [docks](http://npm.im/docks)._
 
 ## See Also
 
-Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your existance!
+Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your
+existance!
 - [@tunnckocore/config](https://www.npmjs.com/package/@tunnckocore/config): All the configs for all the tools, in one place | [homepage](https://github.com/tunnckoCoreLabs/config "All the configs for all the tools, in one place")
 - [@tunnckocore/create-project](https://www.npmjs.com/package/@tunnckocore/create-project): Create and scaffold a new project, its GitHub repository and… [more](https://github.com/tunnckoCoreLabs/create-project) | [homepage](https://github.com/tunnckoCoreLabs/create-project "Create and scaffold a new project, its GitHub repository and contents")
 - [@tunnckocore/execa](https://www.npmjs.com/package/@tunnckocore/execa): Thin layer on top of [execa][] that allows executing multiple… [more](https://github.com/tunnckoCoreLabs/execa) | [homepage](https://github.com/tunnckoCoreLabs/execa "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence")
@@ -177,7 +178,7 @@ Released under the [Apache-2.0 License][license-url].
 [patreon-img]: https://badgen.net/badge/patreon/tunnckoCore/F96854?icon=patreon
 [patreon-sponsor-img]: https://badgen.net/badge/become/a%20sponsor/F96854?icon=patreon
 
-[shareu]: https://twitter.com/intent/tweet?text=https://github.com/tunnckoCoreLabs/tunnckocore&via=tunnckoCore
+[shareu]: https://twitter.com/intent/tweet?text=https://github.com/tunnckoCoreLabs/update&via=tunnckoCore
 [shareb]: https://badgen.net/badge/twitter/share/1da1f2?icon=twitter
 [open-issue-url]: https://github.com/tunnckoCoreLabs/update/issues/new
 
