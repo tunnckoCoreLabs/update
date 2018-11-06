@@ -2,74 +2,71 @@
 
 'use strict';
 
-const path = require('path');
+/* eslint-disable promise/always-return */
+
 const proc = require('process');
 const charlike = require('charlike');
-// const { exec } = require('@tunnckocore/execa');
-const getPkg = require('@tunnckocore/package-json').default;
-const fs = require('fs-extra');
 
-const get = async (name, field) => (await getPkg(name))[field];
+const update = require('./index');
+const pkg = require('./package.json');
 
-const cwd = proc.cwd();
-const name = path.basename(cwd);
-const upDir = path.dirname(cwd);
+(async function main() {
+  const argv = await charlike.cli(showHelp, proc.argv.slice(2), {
+    pkg,
+    isUpdate: true,
+  });
 
-// eslint-disable-next-line import/no-dynamic-require
-const pkg = require(path.join(cwd, 'package.json'));
+  try {
+    const { ranInCwd, cwd } = await update(argv._[0], argv);
+    console.log('Updating your project has finished.');
 
-async function main() {
-  proc.chdir(upDir);
-
-  const oldCwd = path.join(upDir, `old-${name}`);
-  if (await fs.pathExists(oldCwd)) {
-    await fs.remove(oldCwd);
-  } else {
-    await fs.move(cwd, oldCwd);
+    if (ranInCwd) {
+      console.log('Make sure to open current folder again: cd', cwd);
+    }
+  } catch (err) {
+    console.error(';( Oooh, crap! Some error happened.');
+    console.error(argv.verbose ? err.stack : err.message);
+    proc.exit(1);
   }
+})();
 
-  const deps = JSON.stringify(
-    Object.assign({}, pkg.dependencies, {
-      esm: `^${await get('esm', 'version')}`,
-    }),
-  );
+function showHelp(exitCode = 0) {
+  const log = exitCode === 0 ? console.log : console.error;
 
-  const devDeps = JSON.stringify(
-    Object.assign({}, pkg.devDependencies, {
-      '@tunnckocore/config': `^${await get('@tunnckocore/config', 'version')}`,
-      '@tunnckocore/scripts': `^${await get(
-        '@tunnckocore/scripts',
-        'version',
-      )}`,
-      asia: `^${await get('asia', 'version')}`,
-    }),
-  );
+  log(`  update v${pkg.version}
+  ${pkg.description}
 
-  await charlike(pkg.name, pkg.description, {
-    cwd: upDir,
-    owner: 'tunnckoCoreLabs',
-    licenseStart: pkg.licenseStart,
-    locals: {
-      pkg: await getPkg(pkg.name),
-      deps,
-      devDeps,
-    },
-  });
+  Usage: update [dirName] [flags]
 
-  await fs.move(path.join(oldCwd, 'src'), path.join(cwd, 'src'), {
-    overwrite: true,
-  });
-  await fs.move(path.join(oldCwd, 'test'), path.join(cwd, 'test'), {
-    overwrite: true,
-  });
-  await fs.move(path.join(oldCwd, '.git'), path.join(cwd, '.git'), {
-    overwrite: true,
-  });
+  Common Flags:
+    -h, --help                Display this help.
+    -v, --version             Display current version.
 
-  console.log('Make sure to `cd` again to', cwd);
+  Flags:
+    -d, --desc                Project description, short for "--project.description".
+    -o, --owner               Usually your GitHub username or organization.
+    -t, --templates           Source templates directory.
+    --engine                  Engine to be used in the template files.
+    --locals                  Locals for the template files. Support dot notation.
+    --locals.author.name      Project's author name.
+    --locals.author.email     Project's author email. And so on.
+    --project                 Project metadata like name, description
+    --project.name            Project name.
+    --project.description     Project description.
+    --cwd                     Folder to be used as current working dir.
+    --ly                      Shortcut for --locals.license.year (license start year).
+    --ln                      Set --locals.license.name.
+
+  Examples:
+    update foobar --locals.author.name 'John Snow'
+    update foobar --locals.license 'Apache-2.0' --locals.foo bar
+
+  Useful when transferring to another org or user:
+    update foobar --owner tunnckoCoreLabs
+
+  Useful when switching license:
+    update my-project-dir --ly 2015 --ln MIT
+  `);
+
+  proc.exit(exitCode);
 }
-
-main().catch((err) => {
-  console.log(err.stack);
-  proc.exit(1);
-});

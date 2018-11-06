@@ -1,21 +1,26 @@
 {
   "name": "@tunnckocore/update",
-  "description": "Update a repository with latest templates from `charlike`.",
+  "description": "Update to latest project files and templates, based on `charlike` scaffolder",
   "license": "Apache-2.0",
   "licenseStart": "2018",
   "scripts": {
     "start": "tunnckocore-scripts",
-    "extends": "@tunnckocore/config/scripts"
+    "extends": "@tunnckocore/config/scripts",
+    "docs": "tunnckocore-scripts docs",
+    "lint": "tunnckocore-scripts lint",
+    "test": "tunnckocore-scripts test",
+    "commit": "tunnckocore-scripts commit"
   },
   "engines": {
     "node": "^8.11.0 || >=10.13.0"
   },
   "dependencies": {
-    "@tunnckocore/execa": "^2.1.1",
     "@tunnckocore/package-json": "^0.3.1",
     "charlike": "latest",
     "esm": "^3.0.84",
-    "fs-extra": "^7.0.0"
+    "fs-extra": "^7.0.0",
+    "mixin-deep": "^2.0.0",
+    "mri": "^1.1.1"
   },
   "devDependencies": {
     "@tunnckocore/config": "^0.5.1",
@@ -24,8 +29,8 @@
   },
   "files": [
     "src",
-    "cli.js",
-    "index.js"
+    "index.js",
+    "cli.js"
   ],
   "bin": {
     "update": "cli.js",
@@ -34,7 +39,7 @@
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
-  "version": "0.0.0-semantically-released",
+  "version": "2.0.0",
   "repository": "tunnckoCoreLabs/update",
   "homepage": "https://github.com/tunnckoCoreLabs/update",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
@@ -61,7 +66,13 @@
         "asia",
         "charlike",
         "docks",
-        "execa"
+        "gitcommit",
+        "@tunnckocore/execa",
+        "@tunnckocore/package-json",
+        "@tunnckocore/create-project",
+        "@tunnckocore/update",
+        "@tunnckocore/config",
+        "@tunnckocore/scripts"
       ]
     },
     "lint": {
