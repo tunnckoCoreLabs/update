@@ -30,7 +30,7 @@ Project is [semantically](https://semver.org) & automatically released on [Circl
 <!-- Logo when needed:
 
 <p align="center">
-  <a href="https://github.com/tunnckoCoreLabs/tunnckocore">
+  <a href="https://github.com/tunnckoCoreLabs/update">
     <img src="./media/logo.png" width="85%">
   </a>
 </p>
@@ -72,8 +72,7 @@ _Generated using [docks](http://npm.im/docks)._
 
 ## See Also
 
-Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your
-existance!
+Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your existance!
 - [@tunnckocore/config](https://www.npmjs.com/package/@tunnckocore/config): All the configs for all the tools, in one place | [homepage](https://github.com/tunnckoCoreLabs/config "All the configs for all the tools, in one place")
 - [@tunnckocore/create-project](https://www.npmjs.com/package/@tunnckocore/create-project): Create and scaffold a new project, its GitHub repository and… [more](https://github.com/tunnckoCoreLabs/create-project) | [homepage](https://github.com/tunnckoCoreLabs/create-project "Create and scaffold a new project, its GitHub repository and contents")
 - [@tunnckocore/execa](https://www.npmjs.com/package/@tunnckocore/execa): Thin layer on top of [execa][] that allows executing multiple… [more](https://github.com/tunnckoCoreLabs/execa) | [homepage](https://github.com/tunnckoCoreLabs/execa "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence")
@@ -122,7 +121,7 @@ here](https://github.com/jfmengels/all-contributors-cli#usage).
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars3.githubusercontent.com/u/5038030?v=4" width="120px;"/><br /><sub><b>Charlike Mike Reagent</b></sub>](https://tunnckocore.com)<br />[💻](https://github.com/tunnckoCoreLabs/tunnckocore/commits?author=tunnckoCore "Code") [📖](https://github.com/tunnckoCoreLabs/tunnckocore/commits?author=tunnckoCore "Documentation") [💬](#question-tunnckoCore "Answering Questions") [👀](#review-tunnckoCore "Reviewed Pull Requests") [🔍](#fundingFinding-tunnckoCore "Funding Finding") |
+| [<img src="https://avatars3.githubusercontent.com/u/5038030?v=4" width="120px;"/><br /><sub><b>Charlike Mike Reagent</b></sub>](https://tunnckocore.com)<br />[💻](https://github.com/tunnckoCoreLabs/update/commits?author=tunnckoCore "Code") [📖](https://github.com/tunnckoCoreLabs/update/commits?author=tunnckoCore "Documentation") [💬](#question-tunnckoCore "Answering Questions") [👀](#review-tunnckoCore "Reviewed Pull Requests") [🔍](#fundingFinding-tunnckoCore "Funding Finding") |
 | :---: |
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
@@ -139,10 +138,10 @@ Released under the [Apache-2.0 License][license-url].
 [npmv-url]: https://www.npmjs.com/package/@tunnckocore/update
 [npmv-img]: https://badgen.net/npm/v/@tunnckocore/update?icon=npm
 
-[ghrelease-url]: https://github.com/tunnckoCoreLabs/tunnckocore/releases/latest
-[ghrelease-img]: https://badgen.net/github/release/tunnckoCoreLabs/tunnckocore?icon=github
+[ghrelease-url]: https://github.com/tunnckoCoreLabs/update/releases/latest
+[ghrelease-img]: https://badgen.net/github/release/tunnckoCoreLabs/update?icon=github
 
-[license-url]: https://github.com/tunnckoCoreLabs/tunnckocore/blob/master/LICENSE
+[license-url]: https://github.com/tunnckoCoreLabs/update/blob/master/LICENSE
 [license-img]: https://badgen.net/npm/license/@tunnckocore/update
 
 <!-- Front line badges -->
@@ -150,14 +149,14 @@ Released under the [Apache-2.0 License][license-url].
 [codestyle-url]: https://github.com/airbnb/javascript
 [codestyle-img]: https://badgen.net/badge/code%20style/airbnb/ff5a5f?icon=airbnb
 
-[linuxbuild-url]: https://circleci.com/gh/tunnckoCoreLabs/tunnckocore/tree/master
-[linuxbuild-img]: https://badgen.net/circleci/github/tunnckoCoreLabs/tunnckocore/master?label=build&icon=circleci
+[linuxbuild-url]: https://circleci.com/gh/tunnckoCoreLabs/update/tree/master
+[linuxbuild-img]: https://badgen.net/circleci/github/tunnckoCoreLabs/update/master?label=build&icon=circleci
 
-[codecoverage-url]: https://codecov.io/gh/tunnckoCoreLabs/tunnckocore
-[codecoverage-img]: https://badgen.net/codecov/c/github/tunnckoCoreLabs/tunnckocore?icon=codecov
+[codecoverage-url]: https://codecov.io/gh/tunnckoCoreLabs/update
+[codecoverage-img]: https://badgen.net/codecov/c/github/tunnckoCoreLabs/update?icon=codecov
 
-[dependencies-url]: https://david-dm.org/tunnckoCoreLabs/tunnckocore
-[dependencies-img]: https://badgen.net/david/dep/tunnckoCoreLabs/tunnckocore?label=deps
+[dependencies-url]: https://david-dm.org/tunnckoCoreLabs/update
+[dependencies-img]: https://badgen.net/david/dep/tunnckoCoreLabs/update?label=deps
 
 [ccommits-url]: https://conventionalcommits.org/
 [ccommits-img]: https://badgen.net/badge/conventional%20commits/v1.0.0/dfb317
@@ -180,7 +179,7 @@ Released under the [Apache-2.0 License][license-url].
 
 [shareu]: https://twitter.com/intent/tweet?text=https://github.com/tunnckoCoreLabs/tunnckocore&via=tunnckoCore
 [shareb]: https://badgen.net/badge/twitter/share/1da1f2?icon=twitter
-[open-issue-url]: https://github.com/tunnckoCoreLabs/tunnckocore/issues/new
+[open-issue-url]: https://github.com/tunnckoCoreLabs/update/issues/new
 
 [execa]: https://github.com/sindresorhus/execa
 [new-release]: https://github.com/tunnckoCore/new-release
