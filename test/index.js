@@ -56,4 +56,5 @@ test('basic test', async (t) => {
   t.strictEqual(newPkg.bin, 'cli.js');
   t.ok(newPkg.files.includes('templates'));
   t.ok(newPkg.files.includes('cli.js'));
+  await fs.remove(join());
 });
