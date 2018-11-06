@@ -2,74 +2,23 @@
 
 'use strict';
 
-const path = require('path');
+/* eslint-disable promise/always-return */
+
 const proc = require('process');
-const charlike = require('charlike');
-// const { exec } = require('@tunnckocore/execa');
-const getPkg = require('@tunnckocore/package-json').default;
-const fs = require('fs-extra');
+const mri = require('mri');
+const update = require('./index');
 
-const get = async (name, field) => (await getPkg(name))[field];
+const argv = mri(proc.argv.slice(2));
 
-const cwd = proc.cwd();
-const name = path.basename(cwd);
-const upDir = path.dirname(cwd);
+// TODO: make CLI similar to the `charlike` one
+// just after the charlike Issue#64
 
-// eslint-disable-next-line import/no-dynamic-require
-const pkg = require(path.join(cwd, 'package.json'));
-
-async function main() {
-  proc.chdir(upDir);
-
-  const oldCwd = path.join(upDir, `old-${name}`);
-  if (await fs.pathExists(oldCwd)) {
-    await fs.remove(oldCwd);
-  } else {
-    await fs.move(cwd, oldCwd);
-  }
-
-  const deps = JSON.stringify(
-    Object.assign({}, pkg.dependencies, {
-      esm: `^${await get('esm', 'version')}`,
-    }),
-  );
-
-  const devDeps = JSON.stringify(
-    Object.assign({}, pkg.devDependencies, {
-      '@tunnckocore/config': `^${await get('@tunnckocore/config', 'version')}`,
-      '@tunnckocore/scripts': `^${await get(
-        '@tunnckocore/scripts',
-        'version',
-      )}`,
-      asia: `^${await get('asia', 'version')}`,
-    }),
-  );
-
-  await charlike(pkg.name, pkg.description, {
-    cwd: upDir,
-    owner: 'tunnckoCoreLabs',
-    licenseStart: pkg.licenseStart,
-    locals: {
-      pkg: await getPkg(pkg.name),
-      deps,
-      devDeps,
-    },
+update(argv._[0], argv)
+  .then(() => {
+    console.log('Updating your project has finished.');
+  })
+  .catch((err) => {
+    console.error(';( Oooh, crap! Some error happened.');
+    console.error(argv.verbose ? err.stack : err.message);
+    proc.exit(1);
   });
-
-  await fs.move(path.join(oldCwd, 'src'), path.join(cwd, 'src'), {
-    overwrite: true,
-  });
-  await fs.move(path.join(oldCwd, 'test'), path.join(cwd, 'test'), {
-    overwrite: true,
-  });
-  await fs.move(path.join(oldCwd, '.git'), path.join(cwd, '.git'), {
-    overwrite: true,
-  });
-
-  console.log('Make sure to `cd` again to', cwd);
-}
-
-main().catch((err) => {
-  console.log(err.stack);
-  proc.exit(1);
-});
