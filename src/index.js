@@ -29,30 +29,12 @@ export default async function update(name, settings) {
   await copyToTemp(projectCwd, newProjectDir);
   await fs.remove(projectCwd);
 
-  const { deps, devDeps } = await latestDeps(pkg);
-
-  // @TODO: move above the `const join` and `fs.mkdirp` when support
-  // the new `settings.ignore` and `settings.dest` options.
-  await charlike(
-    mixinDeep(
-      {
-        project: { name: pkg.name, description: pkg.description },
-        locals: {
-          deps: `${JSON.stringify(deps, null, 4).slice(0, -1)}  }`,
-          devDeps: `${JSON.stringify(devDeps, null, 4).slice(0, -1)}  }`,
-          license: { year: pkg.licenseStart, name: pkg.license },
-        },
-      },
-      options,
-      { cwd: upperDir },
-    ),
-  );
+  await runCharlike(pkg, upperDir, options);
 
   await fs.copy(newProjectDir, projectCwd, { overwrite: true });
   await fs.remove(newProjectDir);
 
-  const newPkgJson = path.join(projectCwd, 'package.json');
-  const projectPkg = await fs.readJSON(newPkgJson);
+  const projectPkg = await fs.readJSON(path.join(projectCwd, 'package.json'));
 
   if (pkg.bin) {
     projectPkg.bin = pkg.bin;
@@ -64,7 +46,22 @@ export default async function update(name, settings) {
     projectPkg.verb.related = pkg.verb.related;
   }
 
-  await fs.writeJSON(newPkgJson, projectPkg, { spaces: 2 });
+  await fs.writeJSON(path.join(projectCwd, 'package.json'), projectPkg, {
+    spaces: 2,
+  });
+
+  return { cwd: projectCwd, ranInCwd: !name };
+}
+
+async function getLatestPkg(projectCwd) {
+  const { default: p } = await import(path.join(projectCwd, 'package.json'));
+  let pkg = null;
+  try {
+    pkg = await packageJson(p.name);
+  } catch (err) {
+    throw new Error(`Project ${p.name} should exist in npm before updating it`);
+  }
+  return pkg;
 }
 
 // TODO: cleanup / simplify when `charlike` supports `ignore` option
@@ -94,6 +91,27 @@ async function copyToTemp(projectCwd, newProjectDir) {
   }
 }
 
+async function runCharlike(pkg, upperDir, options) {
+  const { deps, devDeps } = await latestDeps(pkg);
+
+  // @TODO: move above the `const join` and `fs.mkdirp` when support
+  // the new `settings.ignore` and `settings.dest` options.
+  await charlike(
+    mixinDeep(
+      {
+        project: { name: pkg.name, description: pkg.description },
+        locals: {
+          deps: `${JSON.stringify(deps, null, 4).slice(0, -1)}  }`,
+          devDeps: `${JSON.stringify(devDeps, null, 4).slice(0, -1)}  }`,
+          license: { year: pkg.licenseStart, name: pkg.license },
+        },
+      },
+      options,
+      { cwd: upperDir },
+    ),
+  );
+}
+
 async function latestDeps(pkg) {
   const deps = Object.assign({}, pkg.dependencies, {
     esm: `^${await get('esm', 'version')}`,
@@ -104,19 +122,8 @@ async function latestDeps(pkg) {
   const devDeps = Object.assign({}, pkg.devDependencies, {
     '@tunnckocore/config': `^${latestConfig}`,
     '@tunnckocore/scripts': `^${latestScripts}`,
-    asia: `^1.1.1`,
+    asia: `^${await get('asia', 'version')}`,
   });
 
   return { deps, devDeps };
-}
-
-async function getLatestPkg(projectCwd) {
-  const { default: p } = await import(path.join(projectCwd, 'package.json'));
-  let pkg = null;
-  try {
-    pkg = await packageJson(p.name);
-  } catch (err) {
-    throw new Error(`Project ${p.name} should exist in npm before updating it`);
-  }
-  return pkg;
 }

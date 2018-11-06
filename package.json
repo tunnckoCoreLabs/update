@@ -39,7 +39,7 @@
   "main": "index.js",
   "module": "src/index.js",
   "typings": "src/index.d.ts",
-  "version": "2.0.0-beta",
+  "version": "2.0.0-beta.rc3",
   "repository": "tunnckoCoreLabs/update",
   "homepage": "https://github.com/tunnckoCoreLabs/update",
   "author": "Charlike Mike Reagent (https://tunnckocore.com)",
