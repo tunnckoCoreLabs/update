@@ -101,8 +101,8 @@ async function runCharlike(pkg, upperDir, options) {
       {
         project: { name: pkg.name, description: pkg.description },
         locals: {
-          deps: `${JSON.stringify(deps, null, 4).slice(0, -1)}  }`,
-          devDeps: `${JSON.stringify(devDeps, null, 4).slice(0, -1)}  }`,
+          deps,
+          devDeps,
           license: { year: pkg.licenseStart, name: pkg.license },
           version: await get(pkg.name, 'version'),
         },
@@ -113,18 +113,28 @@ async function runCharlike(pkg, upperDir, options) {
   );
 }
 
-async function latestDeps(pkg) {
+async function latestDeps(pkg = {}) {
   const deps = Object.assign({}, pkg.dependencies, {
     esm: `^${await get('esm', 'version')}`,
   });
 
-  const latestConfig = await get('@tunnckocore/config', 'version');
-  const latestScripts = await get('@tunnckocore/scripts', 'version');
-  const devDeps = Object.assign({}, pkg.devDependencies, {
-    '@tunnckocore/config': `^${latestConfig}`,
-    '@tunnckocore/scripts': `^${latestScripts}`,
-    asia: `^${await get('asia', 'version')}`,
-  });
+  const pkgs = ['@tunnckocore/config', 'asia'].reduce(
+    (promise, name) =>
+      promise.then(async (acc) => {
+        acc[name] = `^${await get(name, 'version')}`;
+        return acc;
+      }),
+    Promise.resolve({}),
+  );
 
-  return { deps, devDeps };
+  const devDeps = Object.assign({}, pkg.devDependencies, await pkgs);
+
+  return {
+    deps: stringify(deps),
+    devDeps: stringify(devDeps),
+  };
+}
+
+function stringify(val) {
+  return `${JSON.stringify(val, null, 4).slice(0, -1)}  }`;
 }

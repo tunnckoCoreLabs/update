@@ -40,6 +40,7 @@ Project is [semantically](https://semver.org) & automatically released on [Circl
 ## Table of Contents
 
 - [Install](#install)
+- [CLI](#cli)
 - [API](#api)
 - [See Also](#see-also)
 - [Contributing](#contributing)
@@ -58,7 +59,48 @@ This project requires [**Node.js**](https://nodejs.org) **^8.11.0 || >=10.13.0**
 _We highly recommend to use Yarn when you think to contribute to this project._
 
 ```bash
-$ yarn add @tunnckocore/update
+$ yarn add --dev @tunnckocore/update
+# or globally
+$ yarn global add @tunnckocore/update
+```
+
+## CLI
+
+Just run `update` or `tunnckocore-update`. It will use latest [charlike][] templates or otherwise templates given through the `--templates / -t` to update your project. Basically all the options and flags from `charlike` are available here too.
+
+Run `update --help` to view this help.
+
+```
+  Usage: update [dirName] [flags]
+
+  Common Flags:
+    -h, --help                Display this help.
+    -v, --version             Display current version.
+
+  Flags:
+    -d, --desc                Project description, short for "--project.description".
+    -o, --owner               Usually your GitHub username or organization.
+    -t, --templates           Source templates directory.
+    --engine                  Engine to be used in the template files.
+    --locals                  Locals for the template files. Support dot notation.
+    --locals.author.name      Project's author name.
+    --locals.author.email     Project's author email. And so on.
+    --project                 Project metadata like name, description
+    --project.name            Project name.
+    --project.description     Project description.
+    --cwd                     Folder to be used as current working dir.
+    --ly                      Shortcut for --locals.license.year (license start year).
+    --ln                      Set --locals.license.name.
+
+  Examples:
+    update foobar --locals.author.name 'John Snow'
+    update foobar --locals.license 'Apache-2.0' --locals.foo bar
+
+  Useful when transferring to another org or user:
+    update foobar --owner tunnckoCoreLabs
+
+  Useful when switching license:
+    update my-project-dir --ly 2015 --ln MIT
 ```
 
 ## API
@@ -72,16 +114,14 @@ _Generated using [docks](http://npm.im/docks)._
 
 ## See Also
 
-Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your
-existance!
+Some of these projects are used here or were inspiration for this one, others are just related. So, thanks for your existance!
+
 - [@tunnckocore/config](https://www.npmjs.com/package/@tunnckocore/config): All the configs for all the tools, in one place | [homepage](https://github.com/tunnckoCoreLabs/config "All the configs for all the tools, in one place")
 - [@tunnckocore/create-project](https://www.npmjs.com/package/@tunnckocore/create-project): Create and scaffold a new project, its GitHub repository and… [more](https://github.com/tunnckoCoreLabs/create-project) | [homepage](https://github.com/tunnckoCoreLabs/create-project "Create and scaffold a new project, its GitHub repository and contents")
-- [@tunnckocore/execa](https://www.npmjs.com/package/@tunnckocore/execa): Thin layer on top of [execa][] that allows executing multiple… [more](https://github.com/tunnckoCoreLabs/execa) | [homepage](https://github.com/tunnckoCoreLabs/execa "Thin layer on top of [execa][] that allows executing multiple commands in parallel or in sequence")
-- [@tunnckocore/scripts](https://www.npmjs.com/package/@tunnckocore/scripts): Universal and minimalist scripts & tasks runner. | [homepage](https://github.com/tunnckoCoreLabs/scripts "Universal and minimalist scripts & tasks runner.")
-- [@tunnckocore/update](https://www.npmjs.com/package/@tunnckocore/update): Update a repository with latest templates from `charlike`. | [homepage](https://github.com/tunnckoCoreLabs/update "Update a repository with latest templates from `charlike`.")
+- [@tunnckocore/package-json](https://www.npmjs.com/package/@tunnckocore/package-json): Simple and fast getting of latest package.json metadata for a… [more](https://github.com/tunnckoCoreLabs/package-json) | [homepage](https://github.com/tunnckoCoreLabs/package-json "Simple and fast getting of latest package.json metadata for a npm module, using axios and unpkg as a source, because npm registry is basically slow")
 - [asia](https://www.npmjs.com/package/asia): Blazingly fast, magical and minimalist testing framework, for Today and… [more](https://github.com/olstenlarck/asia#readme) | [homepage](https://github.com/olstenlarck/asia#readme "Blazingly fast, magical and minimalist testing framework, for Today and Tomorrow")
-- [charlike](https://www.npmjs.com/package/charlike): Small & fast project scaffolder with sane defaults. Supports hundreds… [more](https://github.com/tunnckoCoreLabs/charlike) | [homepage](https://github.com/tunnckoCoreLabs/charlike "Small & fast project scaffolder with sane defaults. Supports hundreds of template engines through the @JSTransformers API or if you want custom `render` function passed through options")
 - [docks](https://www.npmjs.com/package/docks): Extensible system for parsing and generating documentation. It just freaking… [more](https://github.com/tunnckoCore/docks) | [homepage](https://github.com/tunnckoCore/docks "Extensible system for parsing and generating documentation. It just freaking works!")
+- [git-commits-since](https://www.npmjs.com/package/git-commits-since): Get all commits since given period of time or by… [more](https://github.com/tunnckoCoreLabs/git-commits-since) | [homepage](https://github.com/tunnckoCoreLabs/git-commits-since "Get all commits since given period of time or by default from latest git semver tag. Understands and follows both SemVer and the Conventional Commits specification.")
 - [gitcommit](https://www.npmjs.com/package/gitcommit): Lightweight and joyful `git commit` replacement. Conventional Commits compliant. | [homepage](https://github.com/tunnckoCore/gitcommit "Lightweight and joyful `git commit` replacement. Conventional Commits compliant.")
 
 **[back to top](#thetop)**
@@ -182,6 +222,6 @@ Released under the [Apache-2.0 License][license-url].
 [shareb]: https://badgen.net/badge/twitter/share/1da1f2?icon=twitter
 [open-issue-url]: https://github.com/tunnckoCoreLabs/update/issues/new
 
-[execa]: https://github.com/sindresorhus/execa
+[charlike]: https://github.com/tunnckoCoreLabs/charlike
 [new-release]: https://github.com/tunnckoCore/new-release
 [semantic-release]: https://github.com/semantic-release/semantic-release
