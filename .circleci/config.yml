@@ -21,7 +21,7 @@ node8linux: &node8linux
 node10linux: &node10linux
   <<: *workdir
   docker:
-    - image: circleci/node:10
+    - image: circleci/node:17
 
 restore_modules_cache: &restore_modules_cache
   restore_cache:
